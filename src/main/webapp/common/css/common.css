@@ -1,0 +1,594 @@
+/***** 세팅 초기화 reset*****/
+/* 요소(element) 여백 초기화  */
+html, body {
+  width: 100%;
+  height:100%;
+}
+
+* { box-sizing: border-box;}
+
+html, body,
+div, span,
+dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6,
+blockquote, p, address, pre, cite,
+form, fieldset, input, textarea, select,
+table, th, td {
+	margin:0;
+	padding:0;
+	}
+
+/* 제목요소 */
+h1, h2, h3, h4, h5, h6 {  
+	font-size:90%;   
+	font-weight:normal;   
+	} 
+
+/* 테두리 없애기 **/
+fieldset, img, abbr,acronym { border:0 none; outline: none; } 
+
+/* 목록 */
+ol, ul { list-style:none; }
+
+/* 테이블 - 마크업에 'cellspacing="0"' 지정 함께 필요 */
+table {
+	border-collapse: separate;
+	border-spacing:0;
+	border:0 none;
+	}
+caption, th, td {
+	text-align:left;
+	font-weight: normal;
+}
+
+/* 텍스트 관련 요소 초기화 */
+address, caption, strong, em, cite {
+	font-weight:normal;
+	font-style:normal;
+	}
+ins { text-decoration:none; }
+del { text-decoration:line-through; }
+
+/* 인용문 */
+blockquote:before, blockquote:after, q:before, q:after { content:""; }
+blockquote,q { quotes:"" ""; }
+
+
+/***** local 폰트설정 & 기본세팅 *****/
+@font-face {
+  font-family:'Malgun Gothic';
+  src: local('Malgun Gothic'),
+  		url('fonts/MalgunGothic.eot');
+  src: local('Malgun Gothic'),
+  	url('fonts/MalgunGothic.eot?#iefixx') format('embedded-opentype'),
+       url('fonts/MalgunGothic.TTF') format('truetype'),
+       url('fonts/MalgunGothic.svg#MalgunGothicc') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/***** 변수로 설정하기 위한 기본세팅 형식 *****/
+:root {
+  /* btn Color */
+  --btn-blue-color: #1b498e;
+  --btn-aqua-color: #137c96;
+  --btn-grey-color: #878787;
+  
+  /* Padding Size  */
+  --btn-large-padding: 5px 10px;
+  --btn-medium-padding:4px 10px;
+  --btn-small-padding: 2px 5px;
+  
+  /* Font Size */
+  --font-30: 30px;
+  --font-20: 20px;
+  --font-18: 18px;
+  --font-15: 15px;
+  --font-14: 14px;
+  --font-12: 12px;
+  
+  /* Font Weight */
+  --font-bold: bold;
+  --font-normal: normal;
+  
+  /* Font Color */
+  --font-white: #fff;
+  --font-dark-grey: #222;
+  --font-dark2-grey: #333;
+  --font-light-grey: #666;
+  }
+
+/* 숨김 요소  */
+caption, legend, #header h2,#sub_header h2, #slogan h2, #footer h2 {
+	position:absolute;
+	overflow:hidden;	
+	width:1px;
+	height:1px;
+	font-size:0;
+	line-height:0;
+}
+
+hr, legend, .blind {position:absolute; left:-1000%; top:0; width:1px; height:1px; font-size:0; line-height:0; overflow:hidden; display:none;}
+
+/* body 스타일 */
+body {
+	text-align:left; line-height:1.5em;font-size:12px; font-family:"맑은 고딕", Malgun Gothic,'Noto Sans KR', sans-serif; color:#2f3743;
+}
+/* 링크 */
+a, a:link {
+	color:#333;
+	text-decoration:none;
+} 
+a:visited {
+	color:#333;
+	text-decoration:none;
+}
+a:hover {
+	color:#333;
+	text-decoration:none;
+}
+a:focus {
+	color:#333;
+	text-decoration:none;
+}
+a:active {
+	color:#333;
+	text-decoration:none;
+} 
+/* 이미지, 폼관련 요소 */
+img {
+	vertical-align:top;
+}
+label, select, input, textarea {
+	vertical-align:top;
+}
+
+/* 수평선*/
+hr { display:none; }
+
+/* form 관련 기본세팅*/
+fieldset{border:0}
+input,select,
+input[type=text],
+input[type=submit],
+input[type=search],
+input[type=password],
+input[type=file]{background:#fff; border:#919191 1px solid; box-shadow:none; -webkit-border-radius:5px;}
+input:disabled{ color:#70654f;}
+input.date{ margin-right:5px;}
+input.read{ background:#fafafa;}
+input[type=checkbox]{width:15px;display:inline; height:15px;vertical-align:middle;margin:0px 5px 0 0;}
+input[type=radio]{ width:16px; height:16px; vertical-align:middle; margin:0 5px 0 0;}
+/* select {float:left;height:24px;line-height:24px;padding:0px 0 0 5px;appearance:none;-webkit-appearance:none;box-sizing:border-box;background:#fff url("../img/select_arrow_nor.png") no-repeat right 6px center; border:#cbcbcb 1px solid; border-top:#cbcbcb 1px solid; border-left:#cbcbcb 1px solid;}
+select::-ms-expand{opacity:0;} */
+.enabled {color:#808080;}
+input:enabled { background-color:#fff;}
+input:disabled { background-color:#eee;color:#808080;}
+.disabled {background-color:none;color:#fff;cursor:default !important; pointer-events:none;cursor:default;}
+input:focus { background-color:#fff5d0;color:#2f3743;}
+select:disabled { background-color:#eee;color:#808080;}
+select:focus { background-color:#fff5d0;}
+input[type="button"] {border:0;}
+input[type=text] {padding:0 4px;}
+textarea {box-sizing:border-box;resize:none;font-family:"맑은 고딕", Malgun Gothic;padding:10px;font-size:12px;}
+
+input.input_typ01 { height: 40px; border-radius: 5px; padding: 0 10px;}
+input.input_typ02 { height: 40px; border-radius: 5px; padding: 0 10px;}
+
+
+/* 버튼 기본속성 */
+button {outline: 0; border: 0 ; cursor: pointer;}
+
+.cmn_btn01 {
+  width: 130px;
+  height:40px;
+  padding: 3px 10px 5px 10px;;
+  font-size: var(--font-14);
+  font-weight: bold;
+  border-radius: 4px;
+  background: var(--btn-blue-color);
+  color: var(--font-white);
+}
+
+.cmn_btn01:hover {
+  background: #08306b;
+}
+
+.cmn_btn02 {
+  width: 130px;
+  height: 40px;
+  padding: 3px 10px 5px 10px;;
+  font-size: var(--font-14);
+  font-weight: bold;
+  border-radius: 4px;
+  background: var(--btn-aqua-color);
+  color: var(--font-white);
+}
+
+.cmn_btn02:hover {
+  background: #005f77;
+}
+
+.cmn_btn02_1 {
+  width: 440px;
+  height: 40px;
+  padding: 3px 15px 5px 15px;;
+  font-size: var(--font-14);
+  font-weight: bold;
+  border-radius: 4px;
+  background: var(--btn-aqua-color);
+  color: var(--font-white);
+}
+
+.cmn_btn02_1:hover {
+  background: #005f77;
+}
+
+.cmn_btn02_2{
+  width: 170px;
+  height: 40px;
+  padding: 3px 15px 5px 15px;;
+  font-size: var(--font-14);
+  font-weight: bold;
+  border-radius: 4px;
+  background: var(--btn-aqua-color);
+  color: var(--font-white);
+}
+
+.cmn_btn02_2:hover {
+  background: #005f77;
+}
+
+.cmn_btn03 {
+  width: 130px;
+  height: 90px;
+  padding: 3px 15px 5px 15px;;
+  font-size:16px;
+  font-weight: bold;
+  border-radius: 4px;
+  background: #1b498e;
+  color: #fff
+}
+
+.cmn_btn03:hover {
+  background: #08306b;
+}
+
+.cmn_btn04 {
+  width: 130px;
+  height: 40px;
+  padding: 3px 15px 5px 15px;;
+  font-size:14px;
+  font-weight: bold;
+  border-radius: 4px;
+  background: #878787;
+  color: #fff;
+  margin-left: 8px
+}
+
+.cmn_btn04:hover {
+  background: #6d6d6d;
+}
+
+.cmn_btn05 {
+  width: 130px;
+  height: 40px;
+  padding: 3px 15px 5px 15px;;
+  font-size:14px;
+  font-weight: bold;
+  border-radius: 4px;
+  background: #0d8f0d;
+  color: #fff;
+}
+
+.cmn_btn05:hover {
+  background: #006700;
+}
+
+/* 중간버튼2 */
+button.btn_ovlap {
+  float:left;
+  width:auto; 
+  height:24px;
+  line-height:24px; 
+  padding-bottom:4px;
+  font-size:12px; 
+  color:#fff; 
+  margin-left:5px; 
+  background:#137c96; 
+  border-radius:2px; 
+  text-align:center;
+}
+
+  button.btn_ovlap02 {
+    width:100px; 
+    height:28px;
+    line-height:28px; 
+    padding-bottom:4px;
+    font-size:14px; 
+    color:#fff; 
+    margin-left:5px; 
+    background:#1b498e; 
+    border-radius:2px; 
+    text-align:center;
+  }
+
+    button.btn_ovlap03 {
+      float:left;
+      width:auto; 
+      height:24px;
+      line-height:24px; 
+      padding-bottom:4px;
+      font-size:12px; 
+      color:#fff; 
+      margin-left:5px; 
+      background:#1b498e; 
+      border-radius:2px; 
+      text-align:center;
+    }
+
+    button.btn_ovlap04 {
+      width:auto; 
+      height:24px;
+      line-height:24px; 
+      padding-bottom:4px;
+      font-size:12px; 
+      color:#fff; 
+      margin-left:5px; 
+      background:#137c96; 
+      border-radius:2px; 
+      text-align:center;
+    }
+
+    button.btn_ovlap04:hover {
+      background: #003d4d;
+    }
+
+    button.btn_ovlap05 {
+      width:auto; 
+      height:24px;
+      line-height:24px; 
+      padding-bottom:4px;
+      font-size:12px; 
+      color:#fff; 
+      background:#e42f11; 
+      border-radius:2px; 
+      text-align:center;
+    }
+    button.btn_ovlap05:hover {
+      background:#c42307;
+    }
+
+    button.btn_ovlap06 {
+      width:auto; 
+      height:30px;
+      line-height:30px; 
+      padding-bottom:4px;
+      font-size:13px; 
+      color:#fff; 
+      background:#1b498e; 
+      border-radius:3px; 
+      text-align:center;
+      padding: 0 20px;
+    }
+    button.btn_ovlap06:hover {
+      background:#072552;
+    }
+
+
+    button.btn_ovlap04_1 {
+      width:200px; 
+      height:30px;
+      line-height:30px; 
+      padding-bottom:4px;
+      font-size:12px; 
+      color:#fff; 
+      background:#10a0c4; 
+      border-radius:2px; 
+      text-align:center;
+    }
+
+    button.btn_ovlap04_1:hover {
+      background: #008bae;
+    }
+
+    button.btn_ovlap05_1 {
+      width:200px; 
+      height:30px;
+      line-height:30px; 
+      padding-bottom:4px;
+      font-size:12px; 
+      color:#fff; 
+      background:#e42f11; 
+      border-radius:2px; 
+      text-align:center;
+    }
+    button.btn_ovlap05_1:hover {
+      background:#d22104;
+    }
+
+    button.btn_ovlap06 {
+      width:auto; 
+      height:30px;
+      line-height:30px; 
+      padding-bottom:4px;
+      font-size:13px; 
+      color:#fff; 
+      background:#1b498e; 
+      border-radius:3px; 
+      text-align:center;
+      padding: 0 20px;
+    }
+    button.btn_ovlap06:hover {
+      background:#072552;
+    }   
+
+
+    /***** ie css *****/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .cmn_btn01 {
+    font-size: 14px;
+    background: #1b498e;
+    color: #fff;
+    word-spacing: -2px;
+  }
+  
+  .cmn_btn02 {
+    font-size: 14px;
+    background: #137c96;
+    color: #fff;
+  }
+
+  .cmn_btn02_1 {
+    font-size: 14px;
+    background: #137c96;
+    color: #fff;
+  }
+
+  .cmn_btn02_2 {
+    font-size: 14px;
+    background: #137c96;
+    color: #fff;
+  }
+
+    /* 중간버튼2 */
+  button.btn_ovlap {
+    line-height:20px; 
+  }
+
+  button.btn_ovlap02 {
+    line-height:24px;
+  }
+
+  button.btn_ovlap03 {
+    line-height:20px;
+  }
+}
+
+/* 스위치 버튼 */
+.container > .switch {
+  display: block;
+  margin: 12px auto;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 56px;
+  height: 20px;
+  padding: 3px;
+  background-color: white;
+  border-radius: 18px;
+  box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  background-image: -webkit-linear-gradient(top, #eeeeee, white 25px);
+  background-image: -moz-linear-gradient(top, #eeeeee, white 25px);
+  background-image: -o-linear-gradient(top, #eeeeee, white 25px);
+  background-image: linear-gradient(to bottom, #eeeeee, white 25px);
+}
+
+.switch-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.switch-label {
+  position: relative;
+  display: block;
+  height: inherit;
+  font-size: 10px;
+  text-transform: uppercase;
+  background: #eceeef;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
+  -webkit-transition: 0.15s ease-out;
+  -moz-transition: 0.15s ease-out;
+  -o-transition: 0.15s ease-out;
+  transition: 0.15s ease-out;
+  -webkit-transition-property: opacity background;
+  -moz-transition-property: opacity background;
+  -o-transition-property: opacity background;
+  transition-property: opacity background;
+}
+.switch-label:before, .switch-label:after {
+  position: absolute;
+  top: 50%;
+  margin-top: -.5em;
+  line-height: 1;
+  -webkit-transition: inherit;
+  -moz-transition: inherit;
+  -o-transition: inherit;
+  transition: inherit;
+}
+.switch-label:before {
+  content: attr(data-off);
+  right: 11px;
+  color: #aaa;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+}
+.switch-label:after {
+  content: attr(data-on);
+  left: 11px;
+  color: white;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+}
+.switch-input:checked ~ .switch-label {
+  background: #47a8d8;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+}
+.switch-input:checked ~ .switch-label:before {
+  opacity: 0;
+}
+.switch-input:checked ~ .switch-label:after {
+  opacity: 1;
+}
+
+.switch-handle {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  background-image: -webkit-linear-gradient(top, white 40%, #f0f0f0);
+  background-image: -moz-linear-gradient(top, white 40%, #f0f0f0);
+  background-image: -o-linear-gradient(top, white 40%, #f0f0f0);
+  background-image: linear-gradient(to bottom, white 40%, #f0f0f0);
+  -webkit-transition: left 0.15s ease-out;
+  -moz-transition: left 0.15s ease-out;
+  -o-transition: left 0.15s ease-out;
+  transition: left 0.15s ease-out;
+}
+.switch-handle:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -6px 0 0 -6px;
+  width: 12px;
+  height: 12px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+  background-image: -webkit-linear-gradient(top, #eeeeee, white);
+  background-image: -moz-linear-gradient(top, #eeeeee, white);
+  background-image: -o-linear-gradient(top, #eeeeee, white);
+  background-image: linear-gradient(to bottom, #eeeeee, white);
+}
+.switch-input:checked ~ .switch-handle {
+  left: 40px;
+  box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.switch-green > .switch-input:checked ~ .switch-label {
+  background: #4fb845;
+}
+
+
+

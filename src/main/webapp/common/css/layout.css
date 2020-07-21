@@ -1,0 +1,431 @@
+@charset "utf-8";
+/*
+Author : 김진오
+Version : 1.0
+font-weight: normal은 400, bold는 700, bolder는 900, lighter는 100에 해당.
+레이아웃 & 메인 css
+*/
+/*맑은고딕,나눔고딕호출*/
+body,a{font-family:"맑은 고딕", Malgun Gothic,'Noto Sans KR', sans-serif; color:#2f3743;}
+
+/* 메인페이지 */
+#wrap_main {
+  height:100vh;
+  background:#1b498e;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+#container_m {
+  width:1200px;
+  /* background:#fff; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#main_sec{
+  width: 660px;
+  height: 400px;
+  /* background:#fff; */
+  margin-top: 180px;
+}
+
+.m_tit_area {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.mtitle {
+  width: 100%;
+  font-size: 40px;
+  line-height: 50px;
+  color:#fff;
+  text-align: center;
+  align-self: center;
+  font-family: 'Do Hyeon', sans-serif, "맑은 고딕", Malgun Gothic,'돋움',dotum;
+}
+
+.m_sub {
+  width: 100%;
+  height:auto;
+  font-size: 14px;
+  color: #8394b8;
+  text-align: center;
+}
+
+.user_type {
+  width: 100%;
+  height: 320px;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.user_type li {
+  width:330px;
+  height: 223px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top:55px;
+}
+
+.user_type p {
+  line-height: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  color; #333;
+  margin-bottom: 20px;
+  margin-top:5px;
+}
+
+.student_go {
+  border-right: 1px solid #e5e5e5;
+}
+
+.user_type .cmn_btn01 {
+  width: 200px;
+  word-spacing: -3px;
+  font-size: 15px;
+}
+
+.user_type > .cmn_btn01:hover {
+  background: #08306b;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .user_type .cmn_btn01 {
+    background: #1b498e;
+    color: #fff;
+  }
+}
+  
+/***** 서브페이지 레이아웃1*****/
+#wrap_sub1 {
+  width: 100vw;
+  height: 100vh;
+  /* background:#fff; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+#container_s {
+  width: 1200px;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left:1px solid #e1e1e1;
+  border-right:1px solid #e1e1e1;
+}
+
+/***** 서브페이지 레이아웃2****/
+#wrap_sub2 {
+  /* width: 100vw; */
+  /* background:#fff; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+#container_s2 {
+  width: 1200px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left:1px solid #e1e1e1;
+  border-right:1px solid #e1e1e1;
+}
+
+#cmn_head01 {
+  width: 100%;
+  height: 90px;
+  background: #08306b;
+  font-size: 30px;
+  line-height: 90px;
+  color: #fff;
+  text-align: center;
+}
+
+#cmn_head01 h1 {
+  font-size: 42px;
+  font-weight: normal;
+  font-family: 'Do Hyeon', sans-serif, "맑은 고딕", Malgun Gothic,'돋움',dotum;
+}
+
+
+#sbtye01 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.login_s_box01 {
+  width: 580px;
+  height: 320px;
+  border:9px solid #bac0c9;
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+
+.login_input_area {
+  width: 440px;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.exp_txt {
+  width: 440px;
+  height: 60px;
+}
+
+/* 학생 작은 아바타 이미지 */
+.avata_stu {
+  float:left;
+  width: 112px;
+  background: url("../img/user_stu_s_img.png") no-repeat 15px 15px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
+  padding-top: 62px;
+}
+
+/* 교사 작은 아바타 이미지 */
+.avata_tch{
+  float:left;
+  width: 112px;
+  background: url("../img/user_tch_s_img.png") no-repeat 15px 15px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
+  padding-top: 62px;
+}
+
+.input_zone {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.hp_input, .pw_input, .rad_select, .name_input {
+  width:100%;
+  height: 50px;
+  margin-top: 0;
+  /* background: green;  */
+}
+
+.input_typ01 {
+  width: 210px;
+  height: 40px;
+  margin-right: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  word-spacing: -4px;
+}
+
+.login_s_box01 {
+  width: 580px;
+  height: 320px;
+  border:9px solid #bac0c9;
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+
+.login_s_box02 {
+  width: 580px;
+  height: 360px;
+  border:9px solid #bac0c9;
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+
+.input_typ02 {
+  width: 210px;
+  height: 40px;
+  margin-right: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  word-spacing: -4px;
+  margin-top: 10px;
+}
+
+.exp_txt {
+  border-top: 1px solid #b9b9b9;
+  padding-top: 20px;
+}
+
+.exp_txt02 {
+  width:100%;
+  margin-top: 5px;
+  margin-bottom: 10px;
+
+}
+
+.login_input_area02 {
+  width: 440px;
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.input_zone02 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+}
+
+
+.rad_select02 {
+  weight: 100%;
+  margin-top: 10px;
+}
+
+.input_zone_in {
+  display: flex;
+  flex-direction: row;
+}
+
+.login_input_area03 {
+  width: 440px;
+  height: 123px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.login_input_area04 {
+  width: 440px;
+  height: 114px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  border-bottom: 1px solid #b9b9b9;
+  margin-bottom: 20px;
+}
+
+.input_zone03 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.login_input {
+  height: 90px;
+}
+
+#sbtye02 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 10px;
+}
+
+.applic_write {
+  width: 1000px;
+  margin-top: 2px;
+  border-top: 1px solid #1b498e;
+}
+
+.sub_tit01 {
+  float:left;
+  width: auto;
+  height: 26px;
+  font-size: 17px;
+  font-weight: bold;
+  padding-left:22px;
+  background: url("../img/sub_tit_ico.png") no-repeat 0 2px;
+}
+
+.sub_tit01 input, select, input[type=text], input[type=submit], input[type=search], input[type=password], input[type=file] {
+  border-radius: 2px;
+}
+
+.tit_area {
+  width: 1000px;
+  margin-top: 40px;
+}
+
+.bottom_btn_area {
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 20px 0 40px 0;
+
+}
+
+/* 개인정보 전문보기 */
+.txt_full_view {
+  width: 1000px;
+  height: 680px;
+  padding: 20px;
+  margin-top: 10px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+}
+
+.join_idpw_find_btn_area {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-left: 84px;
+}
+
+
+
+#sbtye03 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 20px;
+}
+
+.regis_tch_list {
+  margin-top: 2px;
+  border-top: 1px solid #1b498e;
+}
+
+.bottom_btn_area2 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 20px 0 40px 0;
+
+}

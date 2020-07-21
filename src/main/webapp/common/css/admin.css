@@ -1,0 +1,187 @@
+/* 관리자 header */
+#container_s3 {
+  width: 1200px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  border-left:1px solid #e1e1e1;
+  border-right:1px solid #e1e1e1;
+}
+
+#cmn_head02 {
+  width: 100%;
+  height: 80px;
+  background: #08306b;
+  font-size: 30px;
+  line-height: 80px;
+  color: #fff;
+  text-align: center;
+}
+
+#cmn_head02 h1 {
+  font-size: 28px;
+  font-weight: normal;
+  font-family: 'Do Hyeon', sans-serif, "맑은 고딕", Malgun Gothic,'돋움',dotum;
+  text-align: left;
+  margin-left: 40px;
+  padding-left: 46px;
+  background: url("../img/admin_ico.png") no-repeat 0 center;
+}
+
+.ad_menu {
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid #d1d5dc;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top:24px;
+}
+
+.ad_menu li a {
+  float: left;
+  display: inline; 
+  width: 196px;
+  height: 40px;
+  line-height: 40px;
+  background: #98a0ad;
+  color: #fff;
+  align-self: center;
+  padding-left:18px;
+  margin-right:1px;
+  font-size: 15px;
+  background:#3d6eb7 url("../img/ad_menu_ico.png") no-repeat 160px center;
+}
+
+.ad_menu li a:hover {
+  background:#08306b url("../img/ad_menu_ico.png") no-repeat 160px center;
+}
+
+.ad_menu .active a {
+  background:#08306b url("../img/ad_menu_ico.png") no-repeat 160px center;
+}
+
+
+.applic_write02 {
+  width: 100%;
+  margin-top: 2px;
+  border-top: 1px solid #1b498e;
+}
+
+/* 관리자  타이틀*/
+.ad_tit_area {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/***** 총괄 선생님 설정 *****/
+.set_area {
+  width: 100%;
+  height: 560px;
+  border: solid 1px #e1e1e1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* background: #a4aab3; */
+}
+
+.hisch_srh {
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.hisch_labe {
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+  margin-right: 10px;
+}
+
+input.hisch_inpt {
+  width: 200px;
+  height: 30px;
+  padding: 3px 10px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.tch_select_area {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border:1px solid #d9dde3;
+  margin-top: 20px;
+  background: #eceef1;
+  border-radius: 2px;
+}
+
+/* 좌측영역 */
+.tch_set_left {
+  align-self: center;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.tch_txt1 {
+  height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+}
+
+.tch_set_name {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #d1d5dc;
+  background: #fff;
+  padding: 15px;
+  font-weight: bold;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.left_teacher, .right_teacher {
+  height: 22px;
+  font-size: 14px;
+  color: #000;
+}
+
+.left_teacher a:hover, .right_teacher a:hover {
+  height: 22px;
+  font-size: 14px;
+  color: #de3720;
+}
+
+/* 가운데 버튼영역 */
+.set_btn_area {
+  align-self: center;
+  width: 220px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 우측영역 */
+.tch_set_right {
+  align-self: center;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

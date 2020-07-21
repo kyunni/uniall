@@ -1,0 +1,4 @@
+
+@import url(common.css); /* global 세팅한 css로 정의된 css */
+@import url(layout.css); /* 레이아웃에 한정된 css */
+@import url(contents.css); /* 컨텐츠에 한정된 css */
