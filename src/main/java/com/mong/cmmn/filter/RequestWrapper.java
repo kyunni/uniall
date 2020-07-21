@@ -22,7 +22,7 @@ public class                                                                    
 
 		String[] values = super.getParameterValues(parameter);       
 
-		if (values==null)  {                  
+		if (values == null)  {                  
 			return null;          
 		}
 	  

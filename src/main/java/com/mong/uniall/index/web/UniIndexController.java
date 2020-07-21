@@ -11,6 +11,7 @@ public class UniIndexController {
 
 	@RequestMapping(value = "/index.do")
 	public String index() {
+		log.info("============== index ============");
 		return "index";
 	}
 }
