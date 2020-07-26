@@ -1,4 +1,4 @@
-package com.mong.comm.constant;
+package com.mong.cmmn.constant;
 
 public class EncType {
 

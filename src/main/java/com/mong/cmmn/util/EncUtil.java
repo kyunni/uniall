@@ -1,7 +1,8 @@
 package com.mong.cmmn.util;
 
-import com.mong.comm.constant.EncType;
 import org.apache.log4j.Logger;
+
+import com.mong.cmmn.constant.EncType;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

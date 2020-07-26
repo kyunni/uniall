@@ -4,8 +4,10 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mong.uniall.base.web.UniBaseController;
+
 @Controller
-public class UniIndexController {
+public class UniIndexController extends UniBaseController {
 	
 	static Logger log = Logger.getLogger(UniIndexController.class);
 

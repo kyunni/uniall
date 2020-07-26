@@ -7,8 +7,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>수험생 무료 원서접수</title>
   <link rel="stylesheet" href="/common/css/import.css">
+  <script src="/common/js/jquery-1.12.4.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+  function certSend() {
+	  var hpNo = $('#hpNo').val();
+	  if ($.trim(hpNo) == '') {
+		  alert("휴대폰 번호를 입력해주세요");
+		  $('#hpNo').focus();
+		  return;
+	  }
+	  
+	  $.ajax({
+		  url: '/ajax/certSend.do',
+		  type: 'post',
+		  data: {
+			  hpNo: hpNo
+		  },
+		  success: function(json) {
+			  alert(json);
+		  },
+		  error: function() {
+			  alert('error');
+		  }
+	  });
+	  
+  }
+  </script>
 </head>
 <body>
   <div id="wrap_sub1">
@@ -26,21 +52,21 @@
             
             <div class="input_zone">
               <div class="hp_input">
-                <label for="hp_num" class="blind">휴대폰번호</label>
-                <input id="hp_num" type="text" placeholder="휴대폰 번호를 입력해주세요" maxlength="11" class="input_typ01" />
-                <button class="cmn_btn01" onclick="location.href='stu_login02.html'">비밀번호 전송</button>
+                <label for="hpNo" class="blind">휴대폰번호</label>
+                <input id="hpNo" type="text" placeholder="휴대폰 번호를 입력해주세요" maxlength="13" class="input_typ01" value="" />
+                <button class="cmn_btn01" onclick="certSend()">인증번호 전송</button>
               </div>
               <div class="pw_input">
                 <label for="pw_num" class="blind">비밀번호 입력</label>
                 <input id="pw_num" type="password" placeholder="발급된 비밀번호를 입력해주세요!" class="input_typ01" />
                 <button class="cmn_btn02">비밀번호 확인</button>
               </div>
-              <div class="rad_select">
+<!--               <div class="rad_select">
                 <input id="admiss_chk" type="radio" class="chk_cmn01">
                 <label for="admiss_chk">원서접수</label>
                 <input id="confirm_chk" type="radio" class="chk_cmn01">
                 <label for="confirm_chk">접수확인</label>
-              </div>
+              </div> -->
             </div>
           </div>
           <span class="exp_txt">

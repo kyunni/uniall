@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="">
+	
+	<select id="getList" resultType="java.util.HashMap">
+	SELECT IA.IA_IDX, IA.IA_NAME, IA.IA_ADDRESS, IA.REG_DATE, IA.IA_STATUS,
+	DECODE(IA.IA_STATUS, '01', '미발송', '02', '발송댸기', '99', '발송완료') STATUS,
+	IA.IA_QTY,
+	IA.SEND_DATE FROM IPSI_APPLICATION IA
+	WHERE IA.DEL_YN = 'N'
+	<if test="fromDate != null and fromDate != ''">
+		AND IA.REG_DATE &gt;= TO_DATE(#{fromDate}, 'YYYY-MM-DD')
+	</if>
+	<if test="toDate != null and toDate != ''">
+		AND IA.REG_DATE &lt;= TO_DATE(#{toDate}, 'YYYY-MM-DD')
+	</if>
+	<if test="iaStatus != null and iaStatus != ''">
+		AND IA.IA_STATUS = #{iaStatus}
+	</if>
+	ORDER BY IA.REG_DATE DESC
+	</select>
+	
+	<select id="getMapByKey" resultType="java.util.HashMap">
+		SELECT IA.*
+		FROM IPSI_APPLICATION IA
+		WHERE IA.IA_IDX=#{iaIdx}
+		AND IA.DEL_YN = 'N'
+		
+	</select>
+
+	<select id="selectIpsiInfo" resultType="java.util.HashMap">
+	SELECT *
+	FROM IPSI_APPINCATION
+	</select>
+	
+	<insert id="insertIpsiApplication">
+		<selectKey order="BEFORE" resultType="int" keyProperty="iaIdx">
+			SELECT IA_IDX_SEQ.NEXTVAL AS IA_IDX FROM DUAL
+		</selectKey>
+	INSERT INTO IPSI_APPLICATION
+	(IA_IDX, IA_NAME, IA_EMAIL, IA_SEX, IA_ADDRESS, IA_TEL, IA_HP, IA_QTY, REG_DATE, REG_IDX, DEL_YN, IA_STATUS)
+	VALUES
+	(#{iaIdx}, #{IA_NAME}, #{IA_EMAIL}, #{IA_SEX}, #{IA_ADDRESS}, #{IA_TEL}, #{IA_HP}, #{IA_QTY}, SYSDATE, #{MEM_IDX}, 'N', '01')
+	</insert>
+	
+	<select id="selectIpsiApplication" resultType="java.util.HashMap">
+	SELECT IA.*,
+	DECODE(IA.IA_STATUS, '01', '미발송', '02', '발송댸기', '99', '발송완료') STATUS
+	FROM IPSI_APPLICATION IA
+	WHERE IA.DEL_YN = 'N'
+	<if test="fromDate != null and fromDate != ''">
+		AND IA.REG_DATE &gt;= TO_DATE(#{fromDate}, 'YYYY-MM-DD')
+	</if>
+	<if test="toDate != null and toDate != ''">
+		AND IA.REG_DATE &lt; TO_DATE(#{toDate}, 'YYYY-MM-DD')
+	</if>
+	<if test="iaStatus != null and iaStatus != ''">
+		AND IA.IA_STATUS = #{iaStatus}
+	</if>
+	ORDER BY IA.REG_DATE DESC
+	</select>
+	
+	<update id="updateIpsiApplicationStatus">
+		UPDATE IPSI_APPLICATION
+		SET IA_STATUS = #{IA_STATUS},
+		SEND_DATE = DECODE(#{IA_STATUS}, '99', SYSDATE, NULL),
+		MOD_DATE = SYSDATE,
+		MOD_IDX = #{MEM_IDX}
+		WHERE IA_IDX IN 
+		<foreach collection="iaIdxs" item="iaIdx" separator="," open="(" close=")">
+			#{iaIdx}
+		</foreach>
+		AND DEL_YN = 'N'
+	</update>
+	
+	<update id="deleteIpsiApplication">
+		UPDATE IPSI_APPLICATION
+		SET DEL_DATE = SYSDATE,
+		DEL_IDX = #{MEM_IDX},
+		DEL_YN = 'Y'
+		WHERE IA_IDX IN 
+		<foreach collection="iaIdxs" item="iaIdx" separator="," open="(" close=")">
+			#{iaIdx}
+		</foreach>
+		AND DEL_YN = 'N'
+	</update>
+</mapper>

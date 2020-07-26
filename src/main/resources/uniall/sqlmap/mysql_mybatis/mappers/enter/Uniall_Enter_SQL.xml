@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mong.uniall.enter.service.impl.EnterDAO">
+
+	<select id="getList" resultType="java.util.HashMap">
+	SELECT ROWNUM AS RN, 
+		T.*,
+		C3.CONT_DESC AS JUDGE_DIS_NM,
+		C1.CONT_DESC ENTRN_CLSS_NM,
+	    S1.NEIS_SCH_NM NEIS_SCHOOL_NM,
+	    C2.CONT_DESC JUPSU_AREA_NM
+	FROM SUA_IPSI_MST T
+	LEFT JOIN CMN_COM_CD C1 ON C1.LARGE_DIV = 'SUA10' AND T.ENTRN_CLSS_CD = C1.SMALL_DIV 
+	LEFT JOIN SUA_HIGH_SCHL S1 ON S1.NEIS_SCH_CD = T.NEIS_SCHOOL_CD 
+	LEFT JOIN CMN_COM_CD C2 ON C2.LARGE_DIV = 'SUA16' AND T.JUPSU_AREA = C2.SMALL_DIV
+	LEFT JOIN CMN_COM_CD C3 ON C3.LARGE_DIV = 'SUA26' AND T.JUDGE_DIS = C3.SMALL_DIV
+	WHERE T.ENTRN_YEAR = #{entrnYear}
+	<if test="entrnClssCd != null and entrnClssCd != ''">
+	AND T.ENTRN_CLSS_CD = #{entrnClssCd}
+	</if>
+	<if test="jupsuDate != null and jupsuDate != ''">
+	AND T.JUPSU_DT = #{jupsuDate}
+	</if>
+	<if test="suhumNo != null and suhumNo != ''">
+	AND T.SUHUM_NO = #{suhumNo}
+	</if>
+	<if test="suhumNm != null and suhumNm != ''">
+	AND T.SUHUM_NM LIKE '%' || #{suhumNm} || '%'
+	</if>
+	<if test="schoolCode != null and schoolCode != ''">
+	AND T.NEIS_SCHOOL_CD = #{schoolCode}
+	</if>
+	</select>
+	
+	<select id="getJiwon" resultType="java.util.HashMap">
+		SELECT T.*,
+			C1.SMALL_DIV BANK_CD,
+			S1.NEIS_SCH_NM SCHOOL_NAME
+		FROM SUA_IPSI_MST T
+			LEFT JOIN CMN_COM_CD C1 ON C1.LARGE_DIV = 'CMN10' AND C1.CONT_DESC = T.BANK_NM
+			LEFT JOIN SUA_HIGH_SCHL S1 ON S1.NEIS_SCH_CD = T.NEIS_SCHOOL_CD 
+		WHERE T.SUHUM_NO=#{suhumNo}
+	</select>
+
+	<insert id="insertIpsiMst">
+		<selectKey order="BEFORE" resultType="String" keyProperty="suhumNo">
+		SELECT F_TOI_SUA_SUHUM_CRT(#{entrnYear}, #{entrnClssCd}, #{DEPT_UNIT_CD}, #{JUNHYUNG_CD}, null) FROM DUAL
+		</selectKey>
+INSERT
+INTO   SUA_IPSI_MST
+       (
+              ENTRN_YEAR,
+              ENTRN_CLSS_CD,
+              SUHUM_NO,
+              SUHUM_NM,
+              SUHUM_NM_CHI,
+              SUHUM_NM_ENG,
+              JUMIN_NO,
+              SEX_GB,
+              JUPSU_NO,
+              JUPSU_DT,
+              JUPSU_AREA,
+              JUNHYUNG_CD,
+              DEPT_UNIT_CD,
+              JUNHYUNG_DETAIL,
+              JUYA_GB,
+              JUNHYUNG_CD_1,
+              DEPT_UNIT_CD_1,
+              JUNHYUNG_DETAIL_1,
+              JUYA_GB_1,
+              JUNHYUNG_CD_2,
+              DEPT_UNIT_CD_2,
+              JUNHYUNG_DETAIL_2,
+              JUYA_GB_2,
+              JIWONJA_GB,
+              NEIS_SCHOOL_CD,
+              CS_SCHOOL_CD,
+              JOLUP_YEAR,
+              JOLUP_GB,
+              MAIL_ID,
+              COMPANY_NM,
+              COMPANY_DAY,
+              POST_CD,
+              ADDRESS,
+              TEL_NO,
+              PHON_NO,
+              BOHOJA_NO,
+              ENG_ADDR,
+              SUSI_JIWON,
+              SUSI_SUCCESS,
+              HSB_AGREE,
+              UNIV_NM,
+              HAKWE_NM,
+              UNIV_HAKJUM,
+              UNIV_MAX_JUMSU,
+              UNIV_MIN_JUMSU,
+              UNIV_AVG_JUMSU,
+              UNIV_CON_JUMSU,
+              CAREER_GB,
+              DEPOSIT_MAN,
+              BANK_NM,
+              ACCOUNT_NO,
+              SN_NO,
+              SN_JUMSU,
+              HSB_JUMSU,
+              UNIV_JUMSU,
+              GASAN_JUMSU,
+              MJ_JUMSU,
+              JUNHYUNG_JUMSU,
+              JUNHYUNG_ORDER,
+              TOT_ORDER,
+              BACK_ORDER,
+              JUDGE_DT,
+              JUDGE_GB,
+              JUDGE_DIS,
+              JUDGE_CHASU,
+              ENTRY_GB,
+              TEL_INFO_GB,
+              TEL_PERSON,
+              TEL_DIS,
+              ABAND_DT,
+              ABAND_DIS,
+              JUDGE_ERR,
+              JUDGE_ERR_DIS,
+              HAKBUN,
+              UPD_PGM_ID,
+              UPD_USER_ID,
+              UPD_DT,
+              BIGO1,
+              BIGO2,
+              BIGO3,
+              BIGO4,
+              BIGO5,
+              PHONE_DT,
+              SCHOOL_GB,
+              CREATE_DT,
+              SN_WON_JUMSU,
+              SN_WON_GRADE,
+              JUDGE_DIS2,
+              SPARE_ORDER,
+              ABAND_CD,
+              REPAY_CHASU,
+              REPAY_DT,
+              HAKJA_CD,
+              HSB_IN_GB,
+              JUPSU_TIME,
+              DEPOSIT_REL,
+              BIGO6,
+              BIGO7,
+              BIGO8,
+              BIGO9,
+              BIGO10,
+              COMPANY_TYPE,
+              COMPANY_INWON,
+              COMPANY_DISTANCE,
+              COMPANY_TIME,
+              COMPANY_DEPT,
+              COMPANY_TEL,
+              COMPANY_POST,
+              COMPANY_ADDR,
+              COMPANY_FROM,
+              COMPANY_TO,
+              ZIP_CD1,
+              ZIP_CD2,
+              ADDR1,
+              ADDR2,
+              REFUND_GB,
+              ONLINE_NO
+       )
+       VALUES
+       (
+              #{entrnYear},
+              #{entrnClssCd},
+              #{suhumNo},
+              #{SUHUM_NM},
+              #{SUHUM_NM_CHI},
+              #{SUHUM_NM_ENG},
+              #{JUMIN_NO},
+              CASE SUBSTR(#{JUMIN_NO}, 7, 1)
+              	WHEN '1' THEN '1'
+              	WHEN '3' THEN '1'
+              	WHEN '2' THEN '2'
+              	WHEN '4' THEN '2'
+              END,
+              #{suhumNo},
+              TO_CHAR(SYSDATE, 'YYYYMMDD'),
+              #{JUPSU_AREA},
+              #{JUNHYUNG_CD},
+              #{DEPT_UNIT_CD},
+              #{JUNHYUNG_DETAIL},
+              '1',
+              #{JUNHYUNG_CD},
+              #{DEPT_UNIT_CD},
+              #{JUNHYUNG_DETAIL_1},
+              '1',
+              #{JUNHYUNG_CD_2},
+              #{DEPT_UNIT_CD_2},
+              #{JUNHYUNG_DETAIL_2},
+              #{JUYA_GB_2},
+              #{JIWONJA_GB},
+              #{NEIS_SCHOOL_CD},
+              '00000000',
+              #{JOLUP_YEAR},
+              #{JOLUP_GB},
+              #{MAIL_ID},
+              #{COMPANY_NM},
+              #{COMPANY_DAY},
+              #{POST_CD},
+              #{ADDRESS},
+              #{TEL_NO},
+              #{PHON_NO},
+              #{BOHOJA_NO},
+              #{ENG_ADDR},
+              #{SUSI_JIWON},
+              '0',
+              '0',
+              #{UNIV_NM},
+              #{HAKWE_NM},
+              #{UNIV_HAKJUM},
+              #{UNIV_MAX_JUMSU},
+              #{UNIV_MIN_JUMSU},
+              #{UNIV_AVG_JUMSU},
+              #{UNIV_CON_JUMSU},
+              #{CAREER_GB},
+              #{DEPOSIT_MAN},
+              #{BANK_NM},
+              #{ACCOUNT_NO},
+              #{SN_NO},
+              #{SN_JUMSU},
+              #{HSB_JUMSU},
+              #{UNIV_JUMSU},
+              #{GASAN_JUMSU},
+              #{MJ_JUMSU},
+              #{JUNHYUNG_JUMSU},
+              #{JUNHYUNG_ORDER},
+              #{TOT_ORDER},
+              #{BACK_ORDER},
+              #{JUDGE_DT},
+              #{JUDGE_GB},
+              #{JUDGE_DIS},
+              #{JUDGE_CHASU},
+              #{ENTRY_GB},
+              #{TEL_INFO_GB},
+              #{TEL_PERSON},
+              #{TEL_DIS},
+              #{ABAND_DT},
+              #{ABAND_DIS},
+              #{JUDGE_ERR},
+              #{JUDGE_ERR_DIS},
+              #{HAKBUN},
+              #{UPD_PGM_ID},
+              #{UPD_USER_ID},
+              #{UPD_DT},
+              #{BIGO1},
+              #{BIGO2},
+              #{BIGO3},
+              #{BIGO4},
+              #{BIGO5},
+              #{PHONE_DT},
+              #{SCHOOL_GB},
+              SYSDATE,
+              #{SN_WON_JUMSU},
+              #{SN_WON_GRADE},
+              #{JUDGE_DIS2},
+              #{SPARE_ORDER},
+              #{ABAND_CD},
+              #{REPAY_CHASU},
+              #{REPAY_DT},
+              #{HAKJA_CD},
+              #{HSB_IN_GB},
+              TO_CHAR(SYSDATE, 'HH24MISS'),
+              #{DEPOSIT_REL},
+              #{BIGO6},
+              #{BIGO7},
+              #{BIGO8},
+              #{BIGO9},
+              #{BIGO10},
+              #{COMPANY_TYPE},
+              #{COMPANY_INWON},
+              #{COMPANY_DISTANCE},
+              #{COMPANY_TIME},
+              #{COMPANY_DEPT},
+              #{COMPANY_TEL},
+              #{COMPANY_POST},
+              #{COMPANY_ADDR},
+              #{COMPANY_FROM},
+              #{COMPANY_TO},
+              #{ZIP_CD1},
+              #{ZIP_CD2},
+              #{ADDR1},
+              #{ADDR2},
+              #{REFUND_GB},
+              #{ONLINE_NO}
+       )
+	</insert>
+	
+	<update id="updateIpsiMst">
+	UPDATE SUA_IPSI_MST
+	SET    
+	       SUHUM_NM          = #{SUHUM_NM},
+	       JUMIN_NO          = #{JUMIN_NO},
+	       SEX_GB            =               
+	       	  CASE SUBSTR(#{JUMIN_NO}, 7, 1)
+              	WHEN '1' THEN '1'
+              	WHEN '3' THEN '1'
+              	WHEN '2' THEN '2'
+              	WHEN '4' THEN '2'
+              END,
+	       JUPSU_AREA        = #{JUPSU_AREA},
+	       JUNHYUNG_CD       = #{JUNHYUNG_CD},
+	       DEPT_UNIT_CD      = #{DEPT_UNIT_CD},
+	       JUNHYUNG_CD_1     = #{JUNHYUNG_CD},
+	       DEPT_UNIT_CD_1    = #{DEPT_UNIT_CD},
+	       JIWONJA_GB		 = #{JIWONJA_GB},
+	       NEIS_SCHOOL_CD    = #{NEIS_SCHOOL_CD},
+	       JOLUP_YEAR        = #{JOLUP_YEAR},
+	       MAIL_ID           = #{MAIL_ID},
+	       TEL_NO            = #{TEL_NO},
+	       PHON_NO           = #{PHON_NO},
+	       BOHOJA_NO         = #{BOHOJA_NO},
+	       ENG_ADDR          = #{ENG_ADDR},
+	       DEPOSIT_MAN       = #{DEPOSIT_MAN},
+	       BANK_NM           = #{BANK_NM},
+	       ACCOUNT_NO        = #{ACCOUNT_NO},
+	       DEPOSIT_REL		 = #{DEPOSIT_REL},
+	       UPD_PGM_ID        = #{progId},
+	       UPD_USER_ID       = #{userId},
+	       UPD_DT            = SYSDATE,
+	       SCHOOL_GB         = #{SCHOOL_GB},
+	       ZIP_CD1           = #{ZIP_CD1},
+	       ZIP_CD2           = #{ZIP_CD2},
+	       ADDR1             = #{ADDR1},
+	       ADDR2             = #{ADDR2}
+		WHERE SUHUM_NO = #{SUHUM_NO}
+	</update>
+	
+	<select id="selectDupJiwon" resultType="java.util.HashMap">
+	SELECT F_TOI_SUA_DUPE_JIWON(#{entrnYear}, #{entrnClssCd}, #{DEPT_UNIT_CD}, #{JUNHYUNG_CD}, #{JUPSU_AREA}, #{JUMIN_NO}, #{SUHUM_NO}, '0') RTN,
+		F_TOI_SUA_DUPE_JIWON(#{entrnYear}, #{entrnClssCd}, #{DEPT_UNIT_CD}, #{JUNHYUNG_CD}, #{JUPSU_AREA}, #{JUMIN_NO}, #{SUHUM_NO}, '1') MSG
+	FROM DUAL
+	</select>
+	
+	<select id="selectHighSchool" resultType="java.util.HashMap">
+		SELECT 
+			NEIS_SCH_CD, CS_SCH_CD, NEIS_SCH_NM, CS_SCH_NM,
+			POST_CD, ADDR, TEL_NO,
+			SIDO_CD, OLD_SCH_CD
+		FROM SUA_HIGH_SCHL
+		WHERE 1=1
+		<choose>
+			<when test="schoolCode != null and schoolCode != ''">
+		AND NEIS_SCH_CD = #{schoolCode}
+			</when>
+			<otherwise>
+		AND NEIS_SCH_NM LIKE '%' || #{schoolName} || '%'
+			</otherwise>
+		</choose>
+		ORDER BY NEIS_SCH_NM ASC
+	</select>
+	
+	<select id="selectDeptMst" resultType="java.util.HashMap">
+		SELECT *
+		FROM SUA_DEPT_MST
+		WHERE ENTRN_YEAR = #{entrnYear}
+		<if test="entrnClssCd != null and entrnClssCd != ''">
+		AND ENTRN_CLSS_CD = #{entrnClssCd}
+		</if>
+	</select>
+	
+	<select id="selectJunhyung" resultType="java.util.HashMap">
+		SELECT *
+		FROM SUA_JUNHYUNG
+		WHERE ENTRN_YEAR = #{entrnYear}
+		<if test="entrnClssCd != null and entrnClssCd != ''">
+		AND ENTRN_CLSS_CD = #{entrnClssCd}
+		</if>
+		AND WEB_GB = 'Y'
+		AND JUNHYUNG_CD &lt;&gt; '11'
+	</select>
+	
+	<select id="selectCmnComCd" resultType="java.util.HashMap">
+		SELECT *
+		FROM CMN_COM_CD
+		WHERE LARGE_DIV = #{largeDiv}
+		AND SMALL_DIV &lt;&gt; '00000000'
+		<if test="smallDiv != null and smallDiv != ''">
+		AND SMALL_DIV = #{smallDiv}
+		</if>
+		<if test="largeDiv == 'SUA23'">
+		AND REL_CD3 = 'Y'
+		</if>
+	</select>
+
+	<select id="checkJuminNo" resultType="String">
+	SELECT F_TOI_GET_JUMIN_CHECK(#{juminNo}) AS checkResult FROM DUAL
+	</select>	
+
+	<insert id="insertSms">
+		INSERT INTO SC_TRAN(
+		TR_NUM, TR_SENDDATE, TR_SENDSTAT,
+		TR_MSGTYPE, 
+		TR_PHONE, 
+		TR_CALLBACK,
+		TR_MSG,
+		TR_ETC1, TR_ETC2, TR_ETC3, TR_ETC4, TR_ETC5)
+		VALUES (
+			SC_SEQUENCE.NEXTVAL, SYSDATE, '0',  
+	       '0',
+	       #{hpNum},
+	       #{backNum},
+	       #{msg},
+	       #{entrnYear}, #{entrnClssCd}, #{suhumNo}, '19980016', #{etc5}
+		)
+	</insert>
+	
+	<select id="getMapByKey" resultType="java.util.HashMap">
+		SELECT IDX, ENTRN_YEAR, ENTRN_CLSS_CD, TO_CHAR(START_DATE, 'YYYY-MM-DD HH24:MI:SS') START_DATE, TO_CHAR(END_DATE, 'YYYY-MM-DD HH24:MI:SS') END_DATE,
+		TO_CHAR(START_DATE, 'YYYYMMDDHH24MISS') COMP_START_DATE, TO_CHAR(END_DATE, 'YYYYMMDDHH24MISS') COMP_END_DATE
+		FROM ENTER_ENTRN_MASTER
+		WHERE IDX = #{idx}
+	</select>
+	
+	<update id="updateItem">
+		UPDATE ENTER_ENTRN_MASTER
+		SET ENTRN_YEAR = #{entrnYear},
+		ENTRN_CLSS_CD = #{entrnClssCd},
+		START_DATE = TO_DATE(#{startDate}, 'YYYY-MM-DD HH24:MI:SS'),
+		END_DATE = TO_DATE(#{endDate}, 'YYYY-MM-DD HH24:MI:SS'),
+		MOD_IDX = #{memIdx},
+		MOD_DATE = SYSDATE
+		WHERE IDX = #{idx}
+	</update>
+</mapper>
